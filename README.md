@@ -4,6 +4,7 @@
 This project is a concise documentation and hands-on guide to understanding the fundamentals of Natural Language Processing (NLP). It focuses on the preprocessing phase — the cornerstone of any NLP pipeline.
 
 🧹 Core Concepts Covered
+
 •	Text Cleaning
 
 •	Removing punctuation and special characters
@@ -27,6 +28,7 @@ This project is a concise documentation and hands-on guide to understanding the 
 •	Creating cleaned, structured data ready for modeling
 
 ⚠️ Common Hurdles in NLP
+
 •	Encoding issues with non-ASCII characters
 
 •	Over-removal of useful words during stopword filtering
@@ -38,6 +40,7 @@ This project is a concise documentation and hands-on guide to understanding the 
 •	Library-related typos (e.g., stopwords.word() vs stopwords.words())
 
 🛠 Tools & Libraries
+
 •	nltk – Natural Language Toolkit for stopwords, lemmatization
 
 •	re – Regular expressions for text cleaning
