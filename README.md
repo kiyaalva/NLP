@@ -1,4 +1,4 @@
-📘 NLP Basics: A Quick Reference
+                                        📘 NLP Basics: A Quick Reference
 
 🎯 Objective
 This project is a concise documentation and hands-on guide to understanding the fundamentals of Natural Language Processing (NLP). It focuses on the preprocessing phase — the cornerstone of any NLP pipeline.
