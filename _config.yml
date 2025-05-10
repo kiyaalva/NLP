@@ -4,7 +4,7 @@ description: >
 logo: /assets/Kiyaalva.png
 remote_theme: pages-themes/cayman
 plugins:
-- jekyll-remote-theme
+  - jekyll-remote-theme
 
 github:
   is_project_page: true
