@@ -2,3 +2,13 @@
 ---
 
 @import "{{ site.theme }}";
+
+/* Add your custom CSS below */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+}
+
+a {
+  color: #007acc;
+}
