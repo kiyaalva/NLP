@@ -2,7 +2,8 @@
 
 Welcome to my NLP research and experimentation space.
 
-My journey into Natural Language Processing began in 2022 while exploring data science concepts. This repository documents the key steps I've taken to process and analyze text data using practical, interview-relevant feature engineering techniques.
+My journey into Natural Language Processing began in 2022 while exploring data science concepts. I hold a Master’s degree in Information Science from the **University of Pittsburgh**, where I focused on courses in **Machine Learning, Natural Language Processing, Cloud Computing**, and **Database Systems**, along with several elective subjects that deepened my technical foundation.
+
 
 ### 🎯 Objective
 
