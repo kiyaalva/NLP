@@ -1,9 +1,149 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 2rem;
-  background: #fdfdfd;
-  color: #333;
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-header {
-  margin-bottom: 2rem;
+
+/* Base layout */
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: linear-gradient(to right, #f5f0ff, #f8f5ff);
+  color: #2b2b2b;
+  padding: 2rem 1rem;
+}
+
+/* Main framed container */
+main {
+  max-width: 950px;
+  margin: auto;
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 18px;
+  border: 2px solid #a88cf0;
+  box-shadow: 0 0 40px rgba(168, 140, 240, 0.1);
+  background-image: url('/assets/image/tech-bg.svg'); /* Optional SVG background */
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  background-size: 160px;
+}
+
+/* Headers */
+h1, h2, h3 {
+  color: #4e2a84;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2.4rem;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+/* Paragraphs */
+p {
+  margin: 1rem 0;
+}
+
+/* Navigation Bar */
+nav {
+  display: flex;
+  justify-content: center;
+  background: #f7f0ff;
+  padding: 1rem 0;
+  border: 2px solid #d1bfff;
+  border-radius: 12px;
+  max-width: 950px;
+  margin: 0 auto 2rem;
+}
+
+nav a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: #7a42f4;
+  font-weight: 600;
+}
+
+nav a:hover {
+  color: #552ebc;
+  text-decoration: underline;
+}
+
+/* Blog post list */
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1rem;
+}
+
+li {
+  background: #f4f0ff;
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid #d9c8ff;
+  transition: background 0.3s ease;
+}
+
+li:hover {
+  background: #eae2ff;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #6a6a6a;
+  margin-top: 3rem;
+}
+
+.hero-purple {
+  background: linear-gradient(135deg, #4e2a84, #6e3fb5, #a88cf0);
+  color: #ffffff;
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 5px 30px rgba(144, 102, 235, 0.2);
+}
+
+@media (min-width: 768px) {
+  .hero-purple {
+    flex-direction: row;
+    justify-content: center;
+    text-align: left;
+    gap: 2rem;
+  }
+}
+
+.profile-pic {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.hero-text {
+  max-width: 600px;
+}
+
+.hero-text h1 {
+  font-size: 2.4rem;
+  margin-bottom: 0.3rem;
+  color: #ffffff;
+}
+
+.hero-text h3 {
+  font-weight: 400;
+  margin-bottom: 1.2rem;
+  color: #e0d4ff;
+}
+
+.hero-text p {
+  font-size: 1.05rem;
+  line-height: 1.6;
 }
