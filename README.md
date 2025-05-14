@@ -22,7 +22,7 @@ These steps help surface the most informative patterns in the dataset and prepar
 
 ## CBOW 
 Notebook: Word2Vec.ipynb
-Continuos bag of words is used to convert words into meaningful vectors  
+- Continuos bag of words is used to convert words into meaningful vectors  
 in simple words representing words with  unique numerical values that are relative to each other
 
 ![alt text](images/CBOW.png)
