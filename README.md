@@ -19,10 +19,19 @@ Notebook: Basics.ipynb
 
 These steps help surface the most informative patterns in the dataset and prepare the text for downstream modeling.
 
+## TFIDF , CountVectorizer 
+- They help us determine the frequency of words in a document but cant help us determine the relationship between words
 
 ## CBOW 
 Notebook: Word2Vec.ipynb
 - Continuos bag of words is used to convert words into meaningful vectors  
 in simple words representing words with  unique numerical values that are relative to each other
 
+- Here we use a set of words in a sentences to predict one context word
+
 ![alt text](images/CBOW.png)
+
+## SKIP GRAM 
+- Here we predict a set of words based on the context word 
+
+![alt text](images/SKIPGRAM.png)
