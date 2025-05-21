@@ -35,3 +35,6 @@ in simple words representing words with  unique numerical values that are relati
 - Here we predict a set of words based on the context word 
 
 ![alt text](images/SKIPGRAM.png)
+
+How to choose Word To Vec
+![alt text](Choosingwordtovec.png)
