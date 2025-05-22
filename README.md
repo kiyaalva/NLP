@@ -37,4 +37,7 @@ in simple words representing words with  unique numerical values that are relati
 ![alt text](images/SKIPGRAM.png)
 
 How to choose Word To Vec
-![alt text](Choosingwordtovec.png)
+![alt text](images/Choosingwordtovec.png)
+
+
+![alt text](images/Vectorization.png)
