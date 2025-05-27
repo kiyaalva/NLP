@@ -41,3 +41,10 @@ How to choose Word To Vec
 
 
 ![alt text](images/Vectorization.png)
+
+
+
+### Acknowledgements : Krish Naik Tech Youtuber
+
+
+
