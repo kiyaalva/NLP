@@ -42,6 +42,18 @@ How to choose Word To Vec
 
 ![alt text](images/Vectorization.png)
 
+## Small Notes for quick recap RNN
+
+![alt text](<images/IP.png>)
+
+
+![alt text](<images/RNN.png>)
+
+
+
+![alt text](<images/FPBP (1).png>)
+
+
 
 
 ### Acknowledgements : Krish Naik Tech Youtuber

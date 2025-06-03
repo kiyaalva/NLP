@@ -1,35 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>All About NLP</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/assets/css/style.css" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/image/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/image/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/image/favicon-16x16.png">
-    <link rel="manifest" href="/assets/image/site.webmanifest">
-  </head>
-  <body>
-    <header><h1>All About NLP</h1>
+<head>
+  <meta charset="UTF-8">
+  <title>From Word Counts to Word Vectors – NLP Feature Engineering</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>All About NLP</h1>
     <nav>
-  <a href="/">Home</a> |
-  <a href="/about">About</a> |
-  <a href="/projects">Projects</a> |
-  <a href="/blog">Blog</a>
-</nav
-    </header>
-    <main><h2 id="-welcome-to-all-about-nlp">📘 Welcome to All About NLP</h2>
+      <a href="/">Home</a> |
+      <a href="/about">About</a> |
+      <a href="/projects">Projects</a> |
+      <a href="/blog">Blog</a>
+    </nav>
+  </header>
 
-<p>This is my learning blog and documentation space for all things NLP. Stay tuned for guides, notebooks, and insights as I build up this repository.</p>
+  <main>
+    <article>
+      <h2>📘 From Word Counts to Word Vectors – NLP Feature Engineering</h2>
 
-<p>This blog shares everything from beginner guides to real-world NLP projects.</p>
+      <h3>🧹 Step 1: Cleaning and Normalizing Text</h3>
+      <p><strong>Notebook:</strong> <li><a href="https://github.com/kiyaalva/NLP/blob/main/Basics.ipynb">Basics.ipynb</a></li></p>
+      <ul>
+        <li><strong>Lemmatization</strong> – Normalize tokens by reducing them to base form (e.g., <code>running</code> → <code>run</code>).</li>
+        <li><strong>Stopword and Punctuation Removal</strong> – Clean out common and uninformative words like <code>the</code>, <code>and</code>, and symbols.</li>
+      </ul>
+      <p>This makes the dataset cleaner, simpler, and better suited for modeling.</p>
 
-<p>👉 Check out <a href="/blog">my latest post</a></p>
+      <h3>🧪 Step 2: Extracting Features with CountVectorizer & TF-IDF</h3>
+      <ul>
+        <li><strong>CountVectorizer</strong> – Counts word frequencies in a document.</li>
+        <li><strong>TF-IDF</strong> – Highlights important terms that are frequent in a document but rare overall.</li>
+        <li><strong>N-grams</strong> – Used unigrams and bigrams to find informative word patterns.</li>
+      </ul>
+      <p><em>These methods tell us how often words appear, but they don’t capture meaning or relationships between them.</em></p>
 
-<p>👉 Learn more <a href="/about">about me</a></p>
+      <h3>📦 Step 3: Word2Vec – Capturing Context and Meaning</h3>
+      <p><strong>Notebook:</strong> <li><a href="https://github.com/kiyaalva/NLP/blob/main/Word2Vec.ipynb">Word2Vec.ipynb</a></li>
+      <p>We used <strong>CBOW (Continuous Bag of Words)</strong>, where:</p>
+      <ul>
+        <li>Input: Surrounding context words</li>
+        <li>Output: The center (target) word</li>
+      </ul>
+      <p>This generates dense word vectors (embeddings) where similar words are placed close together in vector space.</p>
 
-</main>
-    <footer><small>© 2025</small></footer>
-  </body>
+      <p><strong>Example:</strong> In the sentence <code>"The doctor treats patients"</code>, CBOW might use <code>"The", "treats", "patients"</code> to predict <code>"doctor"</code>.</p>
+      <p>These embeddings help the model understand that <code>doctor</code>, <code>nurse</code>, and <code>hospital</code> are semantically related.</p>
+
+      <h3>💡 Final Thoughts</h3>
+      <ul>
+        <li><strong>CountVectorizer/TF-IDF</strong> helps us count and compare terms.</li>
+        <li><strong>Word2Vec (CBOW)</strong> helps us understand context and similarity.</li>
+      </ul>
+      <p>Together, they prepare text for powerful downstream models like classification, clustering, or even chatbots.</p>
+
+      <hr>
+      <p>📁 <strong>Explore the notebooks:</strong></p>
+      <ul>
+        <li><a href="https://github.com/kiyaalva/NLP/blob/main/Basics.ipynb">Basics.ipynb</a></li>
+        <li><a href="https://github.com/kiyaalva/NLP/blob/main/Word2Vec.ipynb">Word2Vec.ipynb</a></li>
+      </ul>
+    </article>
+  </main>
+
+  <footer>
+    <p style="text-align:center;">&copy; 2025 All About NLP</p>
+  </footer>
+</body>
 </html>
