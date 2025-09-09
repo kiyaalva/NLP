@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Understanding NLP Basics: Tokenization, Stemming, and Lemmatization</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/image/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/image/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/image/favicon-16x16.png">
+    <link rel="manifest" href="/assets/image/site.webmanifest">
+  </head>
+  <body>
+    <header><h1>All About NLP</h1>
+    <nav>
+  <a href="/">Home</a> |
+  <a href="/about">About</a> |
+  <a href="/blog">Blog</a>
+</nav
+    </header>
+    <main>
+
+
+
+
+
+
+
+
+
+<article class="px-1" data-toc="false">
+  <header>
+    <h1 data-toc-skip>Understanding NLP Basics: Tokenization, Stemming, and Lemmatization</h1>
+    
+
+    <div class="post-meta text-muted">
+      <!-- published date -->
+      <span>
+        
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1746957600"
+  data-df="DD/MM/YYYY"
+  
+    data-bs-toggle="tooltip" data-bs-placement="bottom"
+  
+>
+  11/05/2025
+</time>
+
+      </span>
+
+      <!-- lastmod date -->
+      
+
+      
+
+      <div class="d-flex justify-content-between">
+        <!-- author(s) -->
+        <span>
+          
+
+          
+
+          <em>
+            
+              <a href=""></a>
+            
+          </em>
+        </span>
+
+        <div>
+          <!-- pageviews -->
+          
+
+          <!-- read time -->
+          
+
+
+  9 minutes read
+
+
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+
+  <div class="content">
+    <h1 id="understanding-nlp-basics-tokenization-stemming-and-lemmatization">Understanding NLP Basics: Tokenization, Stemming, and Lemmatization</h1>
+
+<p>Natural Language Processing (NLP) is a fascinating field that enables computers to understand, interpret, and generate human language. In this post, we’ll dive into some fundamental NLP techniques: tokenization, stemming, and lemmatization.</p>
+
+<h2 id="introduction-to-nlp">Introduction to NLP</h2>
+
+<p>The process of NLP often begins with breaking down raw text into smaller, manageable units. This allows us to analyze and process the text more effectively. The <code class="language-plaintext highlighter-rouge">nltk</code> (Natural Language Toolkit) library in Python is a powerful tool for these tasks.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">nltk.stem</span> <span class="kn">import</span> <span class="n">PorterStemmer</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">nltk.stem</span> <span class="kn">import</span> <span class="n">WordNetLemmatizer</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># Ensure NLTK data is available
+# Optional: clear existing nltk_data (if corrupted)
+</span><span class="n">nltk</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">clear</span><span class="p">()</span>
+
+<span class="c1"># Force path to a clean directory
+</span><span class="n">nltk_data_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">abspath</span><span class="p">(</span><span class="s">'nltk_data'</span><span class="p">)</span>
+<span class="n">nltk</span><span class="p">.</span><span class="n">download</span><span class="p">(</span><span class="s">'punkt'</span><span class="p">,</span> <span class="n">download_dir</span><span class="o">=</span><span class="n">nltk_data_path</span><span class="p">)</span> <span class="c1"># Changed from punkt_tab to punkt for broader compatibility
+</span><span class="n">nltk</span><span class="p">.</span><span class="n">download</span><span class="p">(</span><span class="s">'wordnet'</span><span class="p">,</span> <span class="n">download_dir</span><span class="o">=</span><span class="n">nltk_data_path</span><span class="p">)</span>
+<span class="n">nltk</span><span class="p">.</span><span class="n">download</span><span class="p">(</span><span class="s">'stopwords'</span><span class="p">,</span> <span class="n">download_dir</span><span class="o">=</span><span class="n">nltk_data_path</span><span class="p">)</span>
+<span class="n">nltk</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">nltk_data_path</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="tokenization">Tokenization</h2>
+
+<p>Tokenization is the process of breaking text into smaller units called tokens. These tokens can be words, sentences, or even subword units.</p>
+
+<h3 id="sentence-tokenization">Sentence Tokenization</h3>
+
+<p>Sentence tokenization, or sentencizing, is the process of splitting a continuous text into a list of sentences.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">corpus</span> <span class="o">=</span> <span class="s">"""These are the Terms and Conditions governing the use of this Service and the agreement
+that operates between You and the Company. These Terms and Conditions set out the rights and obligations of
+all users regarding the use of the Service. Your access to and use of the Service is conditioned on Your
+acceptance of and compliance with these Terms and Conditions. These Terms and Conditions apply to all visitors,
+users and others who access or use the Service. By accessing or using the Service You agree to be bound by these
+Terms and Conditions. If You disagree with any part of these Terms and Conditions then You may not access the Service.
+You represent that you are over the age of 18. The Company does not permit those under 18 to use the Service.
+Your access to and use of the Service is also conditioned on Your acceptance of and compliance with the Privacy Policy
+of the Company. Our Privacy Policy describes Our policies and procedures on the collection, use and disclosure of
+Your personal information when You use the Application or the Website and tells You about Your privacy rights and
+how the law protects You. Please read Our Privacy Policy carefully before using Our Service. Intellectual Property
+The Service and its original content (excluding Content provided by You or other users), features and functionality
+are and will remain the exclusive property of the Company and its licensors. The Service is protected by copyright,
+trademark, and other laws of both the Country and foreign countries. Our trademarks and trade dress may not be
+used in connection with any product or service without the prior written consent of the Company."""</span>
+
+<span class="n">documents</span> <span class="o">=</span> <span class="n">nltk</span><span class="p">.</span><span class="n">sent_tokenize</span><span class="p">(</span><span class="n">corpus</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="s">'english'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">documents</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># Print the first two sentences to demonstrate
+</span></code></pre></div></div>
+
+<p><strong>Output:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['These are the Terms and Conditions governing the use of this Service and the agreement 
+that operates between You and the Company.', 'These Terms and Conditions set out the rights and obligations of 
+all users regarding the use of the Service.']
+</code></pre></div></div>
+
+<h3 id="word-tokenization">Word Tokenization</h3>
+
+<p>Word tokenization is the process of splitting a sentence into individual words. This is a crucial step for many NLP tasks, such as text analysis and feature extraction.</p>
+
+<p>Before word tokenization, it’s often beneficial to clean the text by removing special characters and converting it to lowercase.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cleaned_corpus</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">documents</span><span class="p">)):</span>
+    <span class="n">review</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="s">'[^a-zA-Z]'</span><span class="p">,</span> <span class="s">' '</span><span class="p">,</span> <span class="n">documents</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">review</span> <span class="o">=</span> <span class="n">review</span><span class="p">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="n">cleaned_corpus</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">review</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">cleaned_corpus</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p><strong>Output:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>these are the terms and conditions governing the use of this service and the agreement that operates between you and the company
+</code></pre></div></div>
+
+<p>Now, we can perform word tokenization on the cleaned sentences:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">words</span> <span class="o">=</span> <span class="n">nltk</span><span class="p">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">cleaned_corpus</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Output:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>['these', 'are', 'the', 'terms', 'and', 'conditions', 'governing', 'the', 'use', 'of', 'this', 
+'service', 'and', 'the', 'agreement', 'that', 'operates', 'between', 'you', 'and', 'the', 'company']
+</code></pre></div></div>
+
+<h2 id="stemming">Stemming</h2>
+
+<p>Stemming is a technique used to reduce words to their root or base form, known as a “stem.” The stem may not be a valid word itself, but it’s useful for reducing inflected words to a common base. The Porter Stemmer is a widely used algorithm for this purpose.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">stemmer</span> <span class="o">=</span> <span class="n">PorterStemmer</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">stemmer</span><span class="p">.</span><span class="n">stem</span><span class="p">(</span><span class="s">'goes'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">stemmer</span><span class="p">.</span><span class="n">stem</span><span class="p">(</span><span class="s">'going'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">stemmer</span><span class="p">.</span><span class="n">stem</span><span class="p">(</span><span class="s">'gone'</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p><strong>Output:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>go
+go
+gone
+</code></pre></div></div>
+
+<p>Here’s an example of applying stemming to our cleaned corpus, excluding stopwords:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span> <span class="c1"># Ensure stopwords are imported if not already
+</span>
+<span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">cleaned_corpus</span><span class="p">:</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="n">nltk</span><span class="p">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+    <span class="n">stemmed_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">stemmer</span><span class="p">.</span><span class="n">stem</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span> <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="p">.</span><span class="n">words</span><span class="p">(</span><span class="s">'english'</span><span class="p">))]</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">' '</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">stemmed_words</span><span class="p">[:</span><span class="mi">10</span><span class="p">]))</span> <span class="c1"># Print first 10 stemmed words for brevity
+</span></code></pre></div></div>
+
+<p><strong>Output (example of first sentence):</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>term condit govern use servic agreement oper compani term condit
+</code></pre></div></div>
+
+<h2 id="lemmatization">Lemmatization</h2>
+
+<p>Lemmatization is a more sophisticated technique than stemming that reduces words to their base form, called a “lemma.” Unlike stemming, lemmatization ensures that the reduced form is a valid word in the language. It achieves this by using a vocabulary and morphological analysis of words.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lemme</span> <span class="o">=</span> <span class="n">WordNetLemmatizer</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">lemme</span><span class="p">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="s">'goes'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">lemme</span><span class="p">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="s">'going'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">lemme</span><span class="p">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="s">'gone'</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p><strong>Output:</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>go
+going
+gone
+</code></pre></div></div>
+
+<p>As you can see, <code class="language-plaintext highlighter-rouge">lemme.lemmatize('goes')</code> correctly returns <code class="language-plaintext highlighter-rouge">go</code>, which is a valid word. However, <code class="language-plaintext highlighter-rouge">going</code> remains <code class="language-plaintext highlighter-rouge">going</code> as it is considered a valid word in its context, and <code class="language-plaintext highlighter-rouge">gone</code> remains <code class="language-plaintext highlighter-rouge">gone</code>. This highlights the difference in how lemmatization handles words compared to stemming.</p>
+
+<p>Here’s an example of applying lemmatization to our cleaned corpus, again excluding stopwords:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">cleaned_corpus</span><span class="p">:</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="n">nltk</span><span class="p">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+    <span class="n">lemmatized_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">lemme</span><span class="p">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span> <span class="k">if</span> <span class="n">word</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="p">.</span><span class="n">words</span><span class="p">(</span><span class="s">'english'</span><span class="p">))]</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">' '</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">lemmatized_words</span><span class="p">[:</span><span class="mi">10</span><span class="p">]))</span> <span class="c1"># Print first 10 lemmatized words for brevity
+</span></code></pre></div></div>
+
+<p><strong>Output (example of first sentence):</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>term condition governing use service agreement operates company term condition
+</code></pre></div></div>
+
+<h2 id="tf-idf">TF-IDF</h2>
+
+<p>TF-IDF stands for Term Frequency-Inverse Document Frequency. It’s a numerical statistic that reflects how important a word is to a document in a collection or corpus. TF-IDF is often used as a weighting factor in information retrieval and text mining. It increases proportionally to the number of times a word appears in the document but is offset by the frequency of the word in the corpus, which helps to adjust for the fact that some words appear more frequently in general.</p>
+
+<h3 id="term-frequency-tf">Term Frequency (TF)</h3>
+
+<p>Term Frequency measures how frequently a term appears in a document. Since every document is different in length, it is possible that a term would appear more times in longer documents than shorter ones. Thus, the term frequency is often divided by the document length (e.g., total number of words in the document) as a way of normalization:</p>
+
+<p>[TF(t,d) = \frac{\text{Number of times term } t \text{ appears in document } d}{\text{Total number of terms in document } d}]</p>
+
+<h3 id="inverse-document-frequency-idf">Inverse Document Frequency (IDF)</h3>
+
+<p>Inverse Document Frequency measures how important a term is. While computing TF, all terms are considered equally important. However, it is known that certain terms, such as “is,” “of,” and “that,” may appear many times but have little actual importance. Thus, we need to weigh down the frequent terms while scaling up the rare ones.</p>
+
+<p>[IDF(t, D) = \log\left(\frac{\text{Total number of documents } N}{\text{Number of documents with term } t}\right)]</p>
+
+<h3 id="tf-idf-calculation">TF-IDF Calculation</h3>
+
+<p>The TF-IDF score is then calculated by multiplying the TF and IDF values:</p>
+
+<p>[TF-IDF(t,d,D) = TF(t,d) \times IDF(t,D)]</p>
+
+<h3 id="implementing-tf-idf-with-sklearn">Implementing TF-IDF with <code class="language-plaintext highlighter-rouge">sklearn</code></h3>
+
+<p>We can use <code class="language-plaintext highlighter-rouge">TfidfVectorizer</code> from <code class="language-plaintext highlighter-rouge">sklearn.feature_extraction.text</code> to calculate TF-IDF scores for our corpus.</p>
+
+<p>First, let’s revisit our <code class="language-plaintext highlighter-rouge">cleaned_corpus</code> after lemmatization and stopword removal. We can reuse the <code class="language-plaintext highlighter-rouge">clean_text</code> function for a more robust cleaning process if we were to load a new dataset, but for our existing <code class="language-plaintext highlighter-rouge">corpus</code> variable, the <code class="language-plaintext highlighter-rouge">cleaned_corpus</code> is already prepared.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span>
+
+<span class="n">cv</span> <span class="o">=</span> <span class="n">TfidfVectorizer</span><span class="p">()</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">cv</span><span class="p">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">cleaned_corpus</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Shape of TF-IDF matrix:"</span><span class="p">,</span> <span class="n">y</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"First document's TF-IDF vector (sparse representation):</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"First document's TF-IDF vector (dense array representation):</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">toarray</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Vocabulary learned by TF-IDF vectorizer:"</span><span class="p">,</span> <span class="n">cv</span><span class="p">.</span><span class="n">vocabulary_</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Output (example - actual output may vary based on corpus content and vocabulary):</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Shape of TF-IDF matrix: (8, 62)
+First document's TF-IDF vector (sparse representation):
+  (0, 15)	0.2319047910903822
+  (0, 52)	0.2319047910903822
+  (0, 48)	0.2319047910903822
+  (0, 41)	0.2319047910903822
+  (0, 39)	0.2319047910903822
+  (0, 31)	0.2319047910903822
+  (0, 26)	0.2319047910903822
+  (0, 25)	0.2319047910903822
+  (0, 20)	0.2319047910903822
+  (0, 18)	0.2319047910903822
+  (0, 17)	0.2319047910903822
+  (0, 12)	0.2319047910903822
+  (0, 7)	0.2319047910903822
+  (0, 2)	0.2319047910903822
+  (0, 0)	0.2319047910903822
+First document's TF-IDF vector (dense array representation):
+ [[0.23190479 0.         0.23190479 0.         0.         0.
+  0.         0.23190479 0.         0.         0.         0.
+  0.23190479 0.         0.         0.23190479 0.         0.23190479
+  0.23190479 0.         0.23190479 0.         0.         0.
+  0.         0.23190479 0.23190479 0.         0.         0.
+  0.         0.23190479 0.         0.         0.         0.
+  0.         0.         0.         0.23190479 0.         0.23190479
+  0.         0.         0.         0.         0.         0.
+  0.23190479 0.         0.         0.         0.23190479 0.
+  0.         0.         0.         0.         0.         0.
+  0.         0.         0.         0.        ]]
+Vocabulary learned by TF-IDF vectorizer: {'term': 52, 'condition': 15, 'governing': 25, 'use': 56, 'service': 48, 
+'agreement': 2, 'operates': 39, 'company': 12, 'set': 49, 'right': 45, 'obligation':
+ 38, 'user': 55, 'regarding': 44, 'access': 0, 'conditioned': 16, 'acceptance': 1, 'compliance': 14, 'apply': 4, 
+ 'visitor': 57, 'others': 40, 'accessing': 5, 'using': 58, 'agree': 3, 
+ 'bound': 8, 'disagree': 21, 'part': 42, 'may': 37, 'represent': 46, 'age': 6, 'permit': 43, 'also': 7, 'privacy': 4
+</code></pre></div></div>
+
+  </div>
+
+  <div class="post-tail-wrapper text-muted">
+    <!-- categories -->
+    
+      <div class="post-meta mb-3">
+        <i class="far fa-folder-open fa-fw me-1"></i>
+        
+          <a href="/categories/nlp/">NLP</a>,
+          <a href="/categories/basics/">Basics</a>
+      </div>
+    
+
+    <!-- tags -->
+    
+      <div class="post-tags">
+        <i class="fa fa-tags fa-fw me-1"></i>
+        
+          <a
+            href="/tags/nlp/"
+            class="post-tag no-text-decoration"
+          >NLP</a>
+        
+          <a
+            href="/tags/python/"
+            class="post-tag no-text-decoration"
+          >Python</a>
+        
+          <a
+            href="/tags/nltk/"
+            class="post-tag no-text-decoration"
+          >NLTK</a>
+        
+          <a
+            href="/tags/tokenization/"
+            class="post-tag no-text-decoration"
+          >Tokenization</a>
+        
+          <a
+            href="/tags/stemming/"
+            class="post-tag no-text-decoration"
+          >Stemming</a>
+        
+          <a
+            href="/tags/lemmatization/"
+            class="post-tag no-text-decoration"
+          >Lemmatization</a>
+        
+      </div>
+    
+
+    <div
+      class="
+        post-tail-bottom
+        d-flex justify-content-between align-items-center mt-5 pb-2
+      "
+    >
+      <div class="license-wrapper">
+        
+      </div>
+
+      <!-- Post sharing snippet -->
+
+<div class="share-wrapper d-flex align-items-center">
+  <span class="share-label text-muted"></span>
+  <span class="share-icons">
+    
+    
+    
+
+    
+
+    <button
+      id="copy-link"
+      aria-label="Copy link"
+      class="btn small"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      title=""
+      data-title-succeed=""
+    >
+      <i class="fa-fw fas fa-link pe-none fs-6"></i>
+    </button>
+  </span>
+</div>
+
+    </div>
+    <!-- .post-tail-bottom -->
+  </div>
+  <!-- div.post-tail-wrapper -->
+</article>
+</main>
+    <footer><small>© 2025</small></footer>
+  </body>
+</html>

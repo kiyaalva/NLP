@@ -103,7 +103,8 @@ print(words)
 **Output:**
 
 ```
-['these', 'are', 'the', 'terms', 'and', 'conditions', 'governing', 'the', 'use', 'of', 'this', 'service', 'and', 'the', 'agreement', 'that', 'operates', 'between', 'you', 'and', 'the', 'company']
+['these', 'are', 'the', 'terms', 'and', 'conditions', 'governing', 'the', 'use', 'of', 'this', 
+'service', 'and', 'the', 'agreement', 'that', 'operates', 'between', 'you', 'and', 'the', 'company']
 ```
 
 ## Stemming
@@ -251,5 +252,9 @@ First document's TF-IDF vector (dense array representation):
   0.23190479 0.         0.         0.         0.23190479 0.
   0.         0.         0.         0.         0.         0.
   0.         0.         0.         0.        ]]
-Vocabulary learned by TF-IDF vectorizer: {'term': 52, 'condition': 15, 'governing': 25, 'use': 56, 'service': 48, 'agreement': 2, 'operates': 39, 'company': 12, 'set': 49, 'right': 45, 'obligation': 38, 'user': 55, 'regarding': 44, 'access': 0, 'conditioned': 16, 'acceptance': 1, 'compliance': 14, 'apply': 4, 'visitor': 57, 'others': 40, 'accessing': 5, 'using': 58, 'agree': 3, 'bound': 8, 'disagree': 21, 'part': 42, 'may': 37, 'represent': 46, 'age': 6, 'permit': 43, 'also': 7, 'privacy': 4
+Vocabulary learned by TF-IDF vectorizer: {'term': 52, 'condition': 15, 'governing': 25, 'use': 56, 'service': 48, 
+'agreement': 2, 'operates': 39, 'company': 12, 'set': 49, 'right': 45, 'obligation':
+ 38, 'user': 55, 'regarding': 44, 'access': 0, 'conditioned': 16, 'acceptance': 1, 'compliance': 14, 'apply': 4, 
+ 'visitor': 57, 'others': 40, 'accessing': 5, 'using': 58, 'agree': 3, 
+ 'bound': 8, 'disagree': 21, 'part': 42, 'may': 37, 'represent': 46, 'age': 6, 'permit': 43, 'also': 7, 'privacy': 4
 ```

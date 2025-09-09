@@ -1,0 +1,8 @@
+{% assign words = content | number_of_words %}
+{% assign read_time = words | divided_by: 200 %}
+{% if read_time == 0 %}
+  Less than 1 minute read
+{% else %}
+  {{ read_time }} minute{% if read_time > 1 %}s{% endif %} read
+{% endif %}
+
