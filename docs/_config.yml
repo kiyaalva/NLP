@@ -4,3 +4,4 @@ remote_theme: cotes2020/jekyll-theme-chirpy
 plugins:
 - jekyll-remote-theme 
 url: "https://www.allaboutnlp.com"
+baseurl: "" # Important for GitHub Pages with custom domains
