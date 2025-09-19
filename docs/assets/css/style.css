@@ -10,15 +10,16 @@ body {
   font-family: 'Roboto', 'Segoe UI', Tahoma, sans-serif;
   background: linear-gradient(to right, #f0e6fa, #e6e6fa);
   color: #333333;
-  padding: 2rem 1rem;
+  padding: 1rem;
 }
 
 /* Main framed container */
 main {
   max-width: 950px;
+  width: 100%; /* Ensure it takes full width on smaller screens */
   margin: auto;
   background: #ffffff;
-  padding: 2.5rem;
+  padding: 1.5rem;
   border-radius: 18px;
   border: 1px solid #c0b0d8;
   box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
@@ -26,6 +27,21 @@ main {
   background-repeat: no-repeat;
   background-position: bottom right;
   background-size: 160px;
+}
+
+/* Responsive Images */
+main img {
+  max-width: 100%;
+  height: auto;
+  display: block; /* Prevents extra space below images */
+}
+
+/* Code Blocks Responsiveness */
+pre,
+code {
+  word-wrap: break-word; /* Forcing long words to break */
+  white-space: pre-wrap; /* Preserve whitespace but allow wrapping */
+  overflow-x: auto; /* Enable horizontal scrolling for very long lines */
 }
 
 /* Headers */

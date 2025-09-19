@@ -85,7 +85,7 @@
           
 
 
-  9 minutes read
+  10 minutes read
 
 
 
@@ -97,13 +97,15 @@
   
 
   <div class="content">
-    <h1 id="understanding-nlp-basics-tokenization-stemming-and-lemmatization">Understanding NLP Basics: Tokenization, Stemming, and Lemmatization</h1>
-
-<p>Natural Language Processing (NLP) is a fascinating field that enables computers to understand, interpret, and generate human language. In this post, we’ll dive into some fundamental NLP techniques: tokenization, stemming, and lemmatization.</p>
+    <p>Natural Language Processing (NLP) is a fascinating field that enables computers to understand, interpret, and generate human language. In this post, we’ll dive into some fundamental NLP techniques: tokenization, stemming, and lemmatization.</p>
 
 <h2 id="introduction-to-nlp">Introduction to NLP</h2>
 
 <p>The process of NLP often begins with breaking down raw text into smaller, manageable units. This allows us to analyze and process the text more effectively. The <code class="language-plaintext highlighter-rouge">nltk</code> (Natural Language Toolkit) library in Python is a powerful tool for these tasks.</p>
+
+<p align="center">
+  <img src="/assets/image/IP.png" alt="NLP Basics Image" style="max-width:70%; height:auto; border-radius:8px; box-shadow:0 4px 16px rgba(0,0,0,0.1);" />
+</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">nltk</span>
 <span class="kn">from</span> <span class="nn">nltk.stem</span> <span class="kn">import</span> <span class="n">PorterStemmer</span>
@@ -147,6 +149,8 @@ The Service and its original content (excluding Content provided by You or other
 are and will remain the exclusive property of the Company and its licensors. The Service is protected by copyright,
 trademark, and other laws of both the Country and foreign countries. Our trademarks and trade dress may not be
 used in connection with any product or service without the prior written consent of the Company."""</span>
+
+
 
 <span class="n">documents</span> <span class="o">=</span> <span class="n">nltk</span><span class="p">.</span><span class="n">sent_tokenize</span><span class="p">(</span><span class="n">corpus</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="s">'english'</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">documents</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># Print the first two sentences to demonstrate

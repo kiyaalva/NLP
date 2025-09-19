@@ -6,13 +6,19 @@ categories: [NLP, Basics]
 tags: [NLP, Python, NLTK, Tokenization, Stemming, Lemmatization]
 ---
 
-# Understanding NLP Basics: Tokenization, Stemming, and Lemmatization
 
 Natural Language Processing (NLP) is a fascinating field that enables computers to understand, interpret, and generate human language. In this post, we'll dive into some fundamental NLP techniques: tokenization, stemming, and lemmatization.
 
 ## Introduction to NLP
 
 The process of NLP often begins with breaking down raw text into smaller, manageable units. This allows us to analyze and process the text more effectively. The `nltk` (Natural Language Toolkit) library in Python is a powerful tool for these tasks.
+
+
+<p align="center">
+  <img src="{{ '/assets/image/IP.png' | relative_url }}"
+       alt="NLP Basics Image"
+       style="max-width:70%; height:auto; border-radius:8px; box-shadow:0 4px 16px rgba(0,0,0,0.1);">
+</p>
 
 ```python
 import nltk
@@ -59,9 +65,12 @@ are and will remain the exclusive property of the Company and its licensors. The
 trademark, and other laws of both the Country and foreign countries. Our trademarks and trade dress may not be
 used in connection with any product or service without the prior written consent of the Company."""
 
+
+
 documents = nltk.sent_tokenize(corpus, language='english')
 print(documents[:2]) # Print the first two sentences to demonstrate
 ```
+
 
 **Output:**
 
