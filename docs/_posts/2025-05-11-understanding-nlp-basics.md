@@ -13,13 +13,6 @@ Natural Language Processing (NLP) is a fascinating field that enables computers 
 
 The process of NLP often begins with breaking down raw text into smaller, manageable units. This allows us to analyze and process the text more effectively. The `nltk` (Natural Language Toolkit) library in Python is a powerful tool for these tasks.
 
-
-<p align="center">
-  <img src="{{ '/assets/image/IP.png' | relative_url }}"
-       alt="NLP Basics Image"
-       style="max-width:70%; height:auto; border-radius:8px; box-shadow:0 4px 16px rgba(0,0,0,0.1);">
-</p>
-
 ```python
 import nltk
 from nltk.stem import PorterStemmer
@@ -71,7 +64,7 @@ documents = nltk.sent_tokenize(corpus, language='english')
 print(documents[:2]) # Print the first two sentences to demonstrate
 ```
 
-
+ b
 **Output:**
 
 ```
