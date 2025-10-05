@@ -39,7 +39,6 @@ Conversely, a token like "are" might be represented by [-0.1, -0.7, 0.8]. If vis
 Following the self-attention mechanism, which establishes relationships between words, a Feed-forward Neural Network (FFN) is applied independently to each token. The FFN's primary role is to enrich the context and sharpen the representation of each token.
 
 ![Transformer Architecture](/assets/image/Transformers.jpg)
-
 Consider the word "are." Its meaning is highly context-dependent:
 *   "Are you going on a walk?" (interrogative)
 *   "They are late." (declarative)
